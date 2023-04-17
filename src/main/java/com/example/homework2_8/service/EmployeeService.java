@@ -3,9 +3,7 @@ import com.example.homework2_8.Employee;
 import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 @Service
 public class EmployeeService {
     public static final Employee[] employees = new Employee[10];
@@ -34,18 +32,5 @@ public class EmployeeService {
                 .filter(e -> e.getDepartment() == department )
                 .min(Comparator.comparingInt(Employee::getWage))
                 .orElseThrow();
-    }
-    public List<Employee> getAllInDepart(){
-        return Arrays.stream(employees)
-                .sorted(Comparator.comparingInt(Employee::getDepartment))
-                .collect(Collectors.toList());
-
-    }
-    public List<Employee> getAllByDepart(int id){
-        return Arrays.stream(employees)
-                .filter(Objects::nonNull)
-                .filter(e -> e.getDepartment() == id )
-                .collect(Collectors.toList());
-
     }
 }
